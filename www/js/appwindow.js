@@ -13,10 +13,10 @@
 'use strict';
 
 // Generate random room id and connect.
-
-var roomServer = 'https://apprtc.appspot.com';
+var roomServer = 'https://appr.tc';
 var loadingParams = {
   errorMessages: [],
+  warningMessages: [],
   suggestedRoomId: randomString(9),
   roomServer: roomServer,
   connect: false,
@@ -37,10 +37,11 @@ var loadingParams = {
         //jscs:disable requireCamelCaseOrUpperCaseIdentifiers
         newParams.isLoopback = serverParams.is_loopback === 'true';
         newParams.mediaConstraints = parseJSON(serverParams.media_constraints);
-        newParams.offerConstraints = parseJSON(serverParams.offer_constraints);
+        newParams.offerOptions = parseJSON(serverParams.offer_options);
         newParams.peerConnectionConfig = parseJSON(serverParams.pc_config);
         newParams.peerConnectionConstraints =
             parseJSON(serverParams.pc_constraints);
+        // TODO: Update this to use ICE_SERVER.
         newParams.turnRequestUrl = serverParams.turn_url;
         newParams.turnTransports = serverParams.turn_transports;
         newParams.wssUrl = serverParams.wss_url;

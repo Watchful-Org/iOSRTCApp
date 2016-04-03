@@ -38,8 +38,16 @@ $ cordova run ios --device
 There are minor changes in the original HTML, JavaScript and CSS in order to make it work as a Cordova application. Those changes are:
 
 - `js/apprtc.debug.js` and `js/appwindow.js` are loaded once Cordova's `ondeviceready` event is fired. This is needed since `js/apprtc.debug.js` relies on existing `window.webkitRTCPeerConnection` and `navigator.webkitGetUserMedia` which are not set by the *cordova-plugin-iosrtc* until `ondeviceready` fires.
+
 - `webrtcDetectedVersion` global variable is hardcoded to `43` (AppRTC JavaScript code expects browser to be Chrome or Chromium, and fails otherwise).
+- This happens here:
+    // NOTE: hack since this crashes (Safari does not match "Chrom"...).
+    // webrtcDetectedVersion = parseInt(navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./)[2], 10);
+    webrtcDetectedVersion = 43;
+    webrtcMinimumVersion = 38;
+   
 - In order to correctly place video views (iOS native `UIView` elements) the plugin `refreshVideos()` function is called when the local or remote video is set (this is because the CSS video elements use "transition" effects that modify their position and size during 1 second).
+This happens in appwindow.html around line 151.
 - A new CSS file `css/main_overrides.css` changes the properties of video elements. For example, it sets `opacity: 0.85` in `#local-video` and `#remote-video` so HTML call controls are shown even below the native `UIView` elements rendering the local and remote video.
 
 
