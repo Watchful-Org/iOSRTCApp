@@ -58,6 +58,11 @@ becomes in the updated AppRTC:
 newParams.offerOptions = parseJSON(serverParams.offer_options);
 this is then referenced in apprtc.debug.js
 
+More observersations re TURN issue:
+I don’t think that the issue is actually with the code relating to turn itself but due to permissions.  
+iOSRTCApp can successfully connect to and make calls to AppRTC running on the public demo server on the web (https://apprt.tc) using iOS or Android native 
+using WiFi, but neither one can make a call using 4G (they both yield the same error about no TURN server).
+
 
 #AppRTC parameters (with clickable links available at: https://apprtc.appspot.com/params.html)
  
@@ -94,4 +99,8 @@ this is then referenced in apprtc.debug.js
 #Tracking screen
 Somewhere in the app, it's possible to bring up a detailed tracking screen with real time information about the webRTC parameters.
 This as come up sometimes while the app was running.  Not sure how to get this to happen.  Looks super useful.
+
+#Infobox
+The infobox code puts up detailed information about the webRTC session, state, real time analytics data, etc.
+
 

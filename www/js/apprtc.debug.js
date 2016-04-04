@@ -211,24 +211,6 @@ if (typeof window === "undefined" || !window.navigator) {
           pcConfig.iceTransports = pcConfig.iceTransportPolicy;
         }
         var pc = new webkitRTCPeerConnection(pcConfig, pcConstraints);
-        var origGetStats = pc.getStats.bind(pc);
-        pc.getStats = function(selector, successCallback, errorCallback) {
-          var self = this;
-          var args = arguments;
-          if (arguments.length > 0 && typeof selector === "function") {
-            return origGetStats(selector, successCallback);
-          }
-          var fixChromeStats = function(response) {
-            var standardReport = {};
-            var reports = response.result();
-            reports.forEach(function(report) {
-              var standardStats = {id:report.id, timestamp:report.timestamp, type:report.type};
-              report.names().forEach(function(name) {
-                standardStats[name] = report.stat(name);
-              });
-              standardReport[standardStats.id] = standardStats;
-            });
-            return standardReport;
           };
           if (arguments.length >= 2) {
             var successCallbackWrapper = function(response) {

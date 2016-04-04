@@ -159,7 +159,7 @@
         setTimeout(function () {
           // Avoid iOS WebSocket crash:
           //   https://github.com/eface2face/cordova-plugin-iosrtc/issues/12
-          // Also looad the original AppRTC JS scripts once Cordova is ready (so the iosrtc plugin
+          // Also load the original AppRTC JS scripts once Cordova is ready (so the iosrtc plugin
           // has polluted the window namespace with WebRTC class/functions).
           ["js/ios-websocket-hack.js", "js/apprtc.debug.js", "js/appwindow.js"].forEach(function (path) {
             var script = document.createElement("script");
@@ -174,14 +174,5 @@
     });  // End of onload.
   </script>
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-48530561-2', 'auto');
-    ga('send', 'pageview');
-  </script>
 </body>
 </html>
