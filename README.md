@@ -49,7 +49,7 @@ There are minor changes in the original HTML, JavaScript and CSS in order to mak
 - In order to correctly place video views (iOS native `UIView` elements) the plugin `refreshVideos()` function is called when the local or remote video is set (this is because the CSS video elements use "transition" effects that modify their position and size during 1 second).
 This happens in appwindow.html around line 151.
 - A new CSS file `css/main_overrides.css` changes the properties of video elements. For example, it sets `opacity: 0.85` in `#local-video` and `#remote-video` so HTML call controls are shown even below the native `UIView` elements rendering the local and remote video.
-
+- apprtc.appspot.com did not provide ICE server config. Consequently, the config was added to `appwindow.js` based on settings published at http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
 
 ## Author
 

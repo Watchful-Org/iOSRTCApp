@@ -41,7 +41,10 @@ Within the project "Build Settings" set "Objective-C Bridging Header" to PROJECT
 Within the project "Build Settings" set "Enable Bitcode" to "No".
 
 
-#Turn server issue
+# Turn server issue
+ICE config for STUN and TURN servers were not provided by server, preventing iOS app to work over cellular connection.
+Config retrieved from http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/ was added in appwindow.js.
+
 Note, turn server is loaded at:
       sendAsyncUrlRequest('GET', roomServer + '/params').then(function(result) {
         var serverParams = parseJSON(result);
@@ -57,11 +60,6 @@ newParams.offerConstraints = parseJSON(serverParams.offer_constraints);
 becomes in the updated AppRTC:
 newParams.offerOptions = parseJSON(serverParams.offer_options);
 this is then referenced in apprtc.debug.js
-
-More observersations re TURN issue:
-I don’t think that the issue is actually with the code relating to turn itself but due to permissions.  
-iOSRTCApp can successfully connect to and make calls to AppRTC running on the public demo server on the web (https://apprt.tc) using iOS or Android native 
-using WiFi, but neither one can make a call using 4G (they both yield the same error about no TURN server).
 
 
 #AppRTC parameters (with clickable links available at: https://apprtc.appspot.com/params.html)

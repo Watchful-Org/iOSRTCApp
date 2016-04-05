@@ -41,7 +41,23 @@ var loadingParams = {
         newParams.peerConnectionConfig = parseJSON(serverParams.pc_config);
         newParams.peerConnectionConstraints =
             parseJSON(serverParams.pc_constraints);
-        // TODO: Update this to use ICE_SERVER.
+
+        // TODO: Retrieved config from http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
+        newParams.peerConnectionConfig.iceServers = [
+          {
+            'url': 'stun:stun.l.google.com:19302'
+          },
+          {
+            'url': 'turn:192.158.29.39:3478?transport=udp',
+            'credential': 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+            'username': '28224511:1379330808'
+          },
+          {
+            'url': 'turn:192.158.29.39:3478?transport=tcp',
+            'credential': 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+            'username': '28224511:1379330808'
+          }
+        ]
         newParams.turnRequestUrl = serverParams.turn_url;
         newParams.turnTransports = serverParams.turn_transports;
         newParams.wssUrl = serverParams.wss_url;
