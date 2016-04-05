@@ -42,7 +42,7 @@ var loadingParams = {
         newParams.peerConnectionConstraints =
             parseJSON(serverParams.pc_constraints);
 
-        // TODO: Retrieved config from http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
+        // Retrieved config from http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
         newParams.peerConnectionConfig.iceServers = [
           {
             'url': 'stun:stun.l.google.com:19302'
