@@ -704,7 +704,10 @@ Call.prototype.hangup = function(async) {
     this.clearCleanupQueue_();
   }
   if (this.localStream_) {
+    try {
     this.localStream_.stop();
+    }
+    catch(err) {}
     this.localStream_ = null;
   }
   if (!this.params_.roomId) {
