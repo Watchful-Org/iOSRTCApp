@@ -101,4 +101,7 @@ This as come up sometimes while the app was running.  Not sure how to get this t
 #Infobox
 The infobox code puts up detailed information about the webRTC session, state, real time analytics data, etc.
 
+# 2016_04_07
+Verified that on Android, you do NOT need to delete the app locally on the phone and do NOT need to remove the android platform directory to deploy new code.
+cordova run android does the trick, and launches the new app (even if the old one was running) with the code changes.
 

@@ -21,5 +21,17 @@
   "bugs": {
     "url": "https://github.com/eface2face/iOSRTCApp/issues"
   },
-  "homepage": "https://github.com/eface2face/iOSRTCApp"
-}
+  "homepage": "https://github.com/eface2face/iOSRTCApp",
+  "scripts": {
+    "//": "iOS RTC Build scrips",
+    "ios-run-clean": "cordova platform remove ios; cordova clean; cordova platform add ios; cordova run ios --device",
+    "ios-run": "cordova run ios --device",
+    "ios-build": "cordova build ios",
+    "android-run-clean": "cordova platform remove android; cordova clean; cordova platform add android; cordova run android --device",
+    "android-run": "cordova run android --device",
+    "android-build": "cordova build android",
+    "browser-run-clean": "cordova platform remove browser; cordova clean; cordova platform add browser; cordova run browser --device",
+    "browser-run": "cordova run browser",
+    "browser-build": "cordova build browser"
+  }
+  }
