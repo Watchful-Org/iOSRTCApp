@@ -24,7 +24,34 @@ Analytics.prototype.sendEventRequest_ = function(eventObj) {
     trace("Failed to send event request: " + error.message);
   }.bind(this));
 };
-var enums = {"EventType":{"ICE_CONNECTION_STATE_CONNECTED":3, "ROOM_SIZE_2":2}, "RequestField":{"MessageType":{"EVENT":"event"}, "CLIENT_TYPE":"client_type", "EventField":{"EVENT_TIME_MS":"event_time_ms", "ROOM_ID":"room_id", "EVENT_TYPE":"event_type", "FLOW_ID":"flow_id"}, "TYPE":"type", "EVENT":"event", "REQUEST_TIME_MS":"request_time_ms"}, "ClientType":{"UNKNOWN":0, "ANDROID":4, "DESKTOP":2, "IOS":3, "JS":1}};
+var enums ={
+  "EventType":{
+    "ICE_CONNECTION_STATE_CONNECTED":3,
+    "ROOM_SIZE_2":2
+  },
+  "RequestField":{
+    "MessageType":{
+      "EVENT":"event"
+    },
+    "CLIENT_TYPE":"client_type",
+    "EventField":{
+      "EVENT_TIME_MS":"event_time_ms",
+      "ROOM_ID":"room_id",
+      "EVENT_TYPE":"event_type",
+      "FLOW_ID":"flow_id"
+    },
+    "TYPE":"type",
+    "EVENT":"event",
+    "REQUEST_TIME_MS":"request_time_ms"
+  },
+  "ClientType":{
+    "UNKNOWN":0,
+    "ANDROID":4,
+    "DESKTOP":2,
+    "IOS":3,
+    "JS":1
+  }
+};
 var RTCPeerConnection = null;
 var getUserMedia = null;
 var attachMediaStream = null;
@@ -249,9 +276,18 @@ function requestUserMedia(constraints) {
   });
 }
 if (typeof module !== "undefined") {
-  module.exports = {RTCPeerConnection:RTCPeerConnection, getUserMedia:getUserMedia, attachMediaStream:attachMediaStream, reattachMediaStream:reattachMediaStream, webrtcDetectedBrowser:webrtcDetectedBrowser, webrtcDetectedVersion:webrtcDetectedVersion, webrtcMinimumVersion:webrtcMinimumVersion};
-}
-;var remoteVideo = $("#remote-video");
+  module.exports = {
+    RTCPeerConnection: RTCPeerConnection,
+    getUserMedia: getUserMedia,
+    attachMediaStream: attachMediaStream,
+    reattachMediaStream: reattachMediaStream,
+    webrtcDetectedBrowser: webrtcDetectedBrowser,
+    webrtcDetectedVersion: webrtcDetectedVersion,
+    webrtcMinimumVersion: webrtcMinimumVersion
+  };
+};
+
+var remoteVideo = $("#remote-video");
 var UI_CONSTANTS = {confirmJoinButton:"#confirm-join-button", confirmJoinDiv:"#confirm-join-div", confirmJoinRoomSpan:"#confirm-join-room-span", fullscreenSvg:"#fullscreen", hangupSvg:"#hangup", icons:"#icons", infoDiv:"#info-div", localVideo:"#local-video", miniVideo:"#mini-video", muteAudioSvg:"#mute-audio", muteVideoSvg:"#mute-video", newRoomButton:"#new-room-button", newRoomLink:"#new-room-link", remoteVideo:"#remote-video", rejoinButton:"#rejoin-button", rejoinDiv:"#rejoin-div", rejoinLink:"#rejoin-link",
   roomLinkHref:"#room-link-href", roomSelectionDiv:"#room-selection", roomSelectionInput:"#room-id-input", roomSelectionInputLabel:"#room-id-input-label", roomSelectionJoinButton:"#join-button", roomSelectionRandomButton:"#random-button", roomSelectionRecentList:"#recent-rooms-list", sharingDiv:"#sharing-div", statusDiv:"#status-div", videosDiv:"#videos"};
 var AppController = function(loadingParams) {
@@ -442,7 +478,9 @@ AppController.prototype.transitionToActive_ = function() {
   var connectTime = window.performance.now();
   this.infoBox_.setSetupTimes(this.call_.startTime, connectTime);
   this.infoBox_.updateInfoDiv();
+  var timeToConnect = (connectTime - this.call_.startTime).toFixed(0) + "ms.";
   trace("Call setup time: " + (connectTime - this.call_.startTime).toFixed(0) + "ms.");
+  document.getElementById("connectTime").innerHTML=timeToConnect;
   trace("reattachMediaStream: " + this.localVideo_.src);
   reattachMediaStream(this.miniVideo_, this.localVideo_);
   this.activate_(this.remoteVideo_);
@@ -929,8 +967,22 @@ Call.prototype.onError_ = function(message) {
     this.onerror(message);
   }
 };
-var Constants = {WS_ACTION:"ws", XHR_ACTION:"xhr", QUEUEADD_ACTION:"addToQueue", QUEUECLEAR_ACTION:"clearQueue", EVENT_ACTION:"event", WS_CREATE_ACTION:"create", WS_EVENT_ONERROR:"onerror", WS_EVENT_ONMESSAGE:"onmessage", WS_EVENT_ONOPEN:"onopen", WS_EVENT_ONCLOSE:"onclose", WS_EVENT_SENDERROR:"onsenderror", WS_SEND_ACTION:"send", WS_CLOSE_ACTION:"close"};
-var InfoBox = function(infoDiv, remoteVideo, call, versionInfo) {
+  var Constants ={
+    WS_ACTION:"ws",
+    XHR_ACTION:"xhr",
+    QUEUEADD_ACTION:"addToQueue",
+    QUEUECLEAR_ACTION:"clearQueue",
+    EVENT_ACTION:"event",
+    WS_CREATE_ACTION:"create",
+    WS_EVENT_ONERROR:"onerror",
+    WS_EVENT_ONMESSAGE:"onmessage",
+    WS_EVENT_ONOPEN:"onopen",
+    WS_EVENT_ONCLOSE:"onclose",
+    WS_EVENT_SENDERROR:"onsenderror",
+    WS_SEND_ACTION:"send",
+    WS_CLOSE_ACTION:"close"
+  };
+  var InfoBox = function(infoDiv, remoteVideo, call, versionInfo) {
   this.infoDiv_ = infoDiv;
   this.remoteVideo_ = remoteVideo;
   this.call_ = call;

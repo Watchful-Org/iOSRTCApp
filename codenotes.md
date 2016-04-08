@@ -105,3 +105,8 @@ The infobox code puts up detailed information about the webRTC session, state, r
 Verified that on Android, you do NOT need to delete the app locally on the phone and do NOT need to remove the android platform directory to deploy new code.
 cordova run android does the trick, and launches the new app (even if the old one was running) with the code changes.
 
+To get the code to run properly and be able to make calls in the browser, need this Chrome extension, set on 'green'
+https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en
+
+
+
