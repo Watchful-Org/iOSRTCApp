@@ -18,8 +18,13 @@ input, textarea {
 	user-select: auto !important;
 }
 
+#icons {
+	bottom: -15px;
+}
+
 #local-video.active {
 	opacity: 0.85 !important;
+	height: 100%
 }
 
 #mini-video.active {
@@ -28,5 +33,15 @@ input, textarea {
 
 #remote-video.active {
 	opacity: 0.85 !important;
+    height: 100%
 }
 
+#icons {
+    bottom: -15px;
+    left: 20px;
+    position: fixed;
+}
+
+svg {
+  display: inline;
+}

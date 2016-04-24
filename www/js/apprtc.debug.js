@@ -354,7 +354,8 @@ AppController.prototype.showRoomSelection_ = function() {
 AppController.prototype.finishCallSetup_ = function(roomId) {
   this.call_.start(roomId);
   document.onkeypress = this.onKeyPress_.bind(this);
-  window.onmousemove = this.showIcons_.bind(this);
+  //window.onmousemove = this.showIcons_.bind(this);
+  window.onclick = this.showIcons_.bind(this);
   $(UI_CONSTANTS.muteAudioSvg).onclick = this.toggleAudioMute_.bind(this);
   $(UI_CONSTANTS.muteVideoSvg).onclick = this.toggleVideoMute_.bind(this);
   $(UI_CONSTANTS.fullscreenSvg).onclick = this.toggleFullScreen_.bind(this);
@@ -582,9 +583,9 @@ AppController.prototype.deactivate_ = function(element) {
 AppController.prototype.showIcons_ = function() {
   if (!this.icons_.classList.contains("active")) {
     this.activate_(this.icons_);
-    setTimeout(function() {
-      this.deactivate_(this.icons_);
-    }.bind(this), 5E3);
+//    setTimeout(function() {
+//      this.deactivate_(this.icons_);
+//    }.bind(this), 5E3);
   }
 };
 AppController.prototype.loadUrlParams_ = function() {
